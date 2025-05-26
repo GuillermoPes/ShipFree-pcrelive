@@ -1,31 +1,45 @@
-import { Metadata } from "next";
-import CTA from "@/app/(site)/Cta";
-import FAQ from "@/app/(site)/Faq";
-import FeaturedTime from "@/app/(site)/FeaturedTime";
-import Footer from "@/app/(site)/Footer";
-import HeroSection from "@/app/(site)/Hero";
-import MakerIntro from "@/app/(site)/MakerIntro";
-import Navbar from "@/app/(site)/Navbar";
-import PricingSection from "@/app/(site)/pricing";
-import TestimonialsPage from "@/app/(site)/Testimonials";
-
-// required by Nextra
-export const metadata: Metadata = {
-  title: "ShipFree",
-};
+import Image from "next/image";
+import Link from "next/link";
+import { FeaturedProducts } from "@/components/FeaturedProducts";
+import { Categories } from "@/components/Categories";
+import { Hero } from "@/components/Hero";
 
 export default function Home() {
   return (
-    <div className="bg-[#212121]">
-      <Navbar />
-      <HeroSection />
-      <FeaturedTime />
-      <MakerIntro />
-      <PricingSection />
-      <FAQ />
-      <TestimonialsPage />
-      <CTA />
-      <Footer />
-    </div>
+    <main className="min-h-screen bg-gray-50">
+      <Hero />
+      <Categories />
+      <FeaturedProducts />
+      
+      {/* Why Choose Us Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">¿Por qué elegirnos?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🛡️</span>
+              </div>
+              <h3 className="font-semibold mb-2">Garantía de 12 Meses</h3>
+              <p className="text-gray-600">Todos nuestros productos incluyen garantía y soporte técnico</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">✨</span>
+              </div>
+              <h3 className="font-semibold mb-2">Calidad Certificada</h3>
+              <p className="text-gray-600">Equipos reacondicionados por expertos técnicos</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🚚</span>
+              </div>
+              <h3 className="font-semibold mb-2">Envío Gratuito</h3>
+              <p className="text-gray-600">En pedidos superiores a 500€</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
