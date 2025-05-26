@@ -1,8 +1,24 @@
-import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
-export const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
-  age: integer().notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
+export const products = pgTable("products", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  description: text("description"),
+  price: text("price").notNull(),
+  image: text("image"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const users = pgTable("users", {
+  id: uuid("id").primaryKey(),
+  email: text("email").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const orders = pgTable("orders", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").references(() => users.id),
+  status: text("status").notNull(),
+  total: text("total").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
